@@ -1,0 +1,720 @@
+/**
+ * Atria Documentation - Custom Theme
+ * Matching the Atria app's glassmorphic purple aesthetic
+ */
+
+/* ==================== Atria Fonts ==================== */
+/* Import Nunito from Google Fonts for the logo text */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+
+/* ==================== Atria Design Tokens ==================== */
+:root {
+  /* Atria Brand Colors */
+  --atria-purple: #8b5cf6;
+  --atria-purple-hover: #7c3aed;
+  --atria-purple-dark: #6d28d9;
+  --atria-accent-yellow: #ffd666;
+  --atria-background: #fbfaff;
+
+  /* Docusaurus Primary Colors (Purple) */
+  --ifm-color-primary: #8b5cf6;
+  --ifm-color-primary-dark: #7c3aed;
+  --ifm-color-primary-darker: #7633e8;
+  --ifm-color-primary-darkest: #6d28d9;
+  --ifm-color-primary-light: #a855f7;
+  --ifm-color-primary-lighter: #b370f7;
+  --ifm-color-primary-lightest: #c084fc;
+
+  /* Text Colors (from Atria) */
+  --ifm-color-content: #1e293b;
+  --ifm-color-content-secondary: #64748b;
+  --ifm-heading-color: #1e293b;
+
+  /* Background */
+  --ifm-background-color: #fbfaff;
+  --ifm-navbar-background-color: rgba(251, 250, 255, 0.95);
+
+  /* Glass Effect Variables */
+  --atria-glass-bg: rgba(255, 255, 255, 0.8);
+  --atria-glass-border: rgba(255, 255, 255, 0.9);
+  --atria-purple-alpha-4: rgba(139, 92, 246, 0.04);
+  --atria-purple-alpha-8: rgba(139, 92, 246, 0.08);
+  --atria-purple-alpha-10: rgba(139, 92, 246, 0.1);
+  --atria-purple-alpha-15: rgba(139, 92, 246, 0.15);
+
+  /* Shadows (purple-tinted) */
+  --ifm-global-shadow-lw: 0 2px 8px rgba(139, 92, 246, 0.08);
+  --ifm-global-shadow-md: 0 4px 16px rgba(139, 92, 246, 0.12);
+  --ifm-global-shadow-tl: 0 8px 32px rgba(139, 92, 246, 0.15);
+
+  /* Spacing (from Atria) */
+  --ifm-spacing-horizontal: 1.5rem;
+
+  /* Border Radius */
+  --ifm-global-radius: 8px;
+  --ifm-code-border-radius: 6px;
+  --ifm-button-border-radius: 6px;
+
+  /* Code */
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(139, 92, 246, 0.1);
+
+  /* Font */
+  --ifm-font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Dark Mode - Classic dark theme */
+[data-theme='dark'] {
+  /* Purple accents for dark mode */
+  --ifm-color-primary: #a855f7;
+  --ifm-color-primary-dark: #9333ea;
+  --ifm-color-primary-darker: #8b2ee5;
+  --ifm-color-primary-darkest: #7e22ce;
+  --ifm-color-primary-light: #c084fc;
+  --ifm-color-primary-lighter: #d8b4fe;
+  --ifm-color-primary-lightest: #e9d5ff;
+
+  /* Classic dark backgrounds */
+  --ifm-background-color: #1b1b1d;
+  --ifm-navbar-background-color: #1b1b1d;
+  --ifm-background-surface-color: #242526;
+
+  /* Dark mode text */
+  --ifm-heading-color: #f1f5f9;
+  --ifm-color-content: #e2e8f0;
+  --ifm-color-content-secondary: #94a3b8;
+
+  /* Dark borders */
+  --atria-purple-alpha-8: rgba(168, 85, 247, 0.15);
+  --atria-purple-alpha-10: rgba(168, 85, 247, 0.2);
+
+  --docusaurus-highlighted-code-line-bg: rgba(168, 85, 247, 0.15);
+}
+
+/* ==================== Global Styles ==================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--atria-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==================== Navbar ==================== */
+
+.navbar {
+  background: var(--atria-purple);
+  border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar__title {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.navbar__link {
+  font-weight: 500;
+  transition: all 0.2s ease;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.navbar__link:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.navbar__link--active {
+  color: white;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Theme toggle - yellow icons (sun & moon) */
+button[class*='colorModeToggle'],
+button[class*='toggle'],
+.navbar button[class*='colorMode'],
+.navbar [aria-label*='theme'],
+[class*='toggleButton'] {
+  background: transparent !important;
+}
+
+button[class*='colorModeToggle']:hover,
+button[class*='toggle']:hover,
+.navbar button[class*='colorMode']:hover,
+.navbar [aria-label*='theme']:hover,
+[class*='toggleButton']:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+button[class*='colorModeToggle'] svg,
+button[class*='toggle'] svg,
+.navbar button[class*='colorMode'] svg,
+.navbar [aria-label*='theme'] svg,
+[class*='toggleButton'] svg {
+  color: var(--atria-accent-yellow) !important;
+}
+
+button[class*='colorModeToggle']:hover svg,
+button[class*='toggle']:hover svg,
+.navbar button[class*='colorMode']:hover svg,
+.navbar [aria-label*='theme']:hover svg,
+[class*='toggleButton']:hover svg {
+  color: #ffd666 !important;
+  filter: drop-shadow(0 0 4px rgba(255, 214, 102, 0.4));
+}
+
+/* ==================== Sidebar ==================== */
+
+.theme-doc-sidebar-container {
+  background: white;
+  border-right: 1px solid var(--atria-purple-alpha-8);
+}
+
+.menu__link {
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.menu__link:hover {
+  background: var(--atria-purple-alpha-4);
+  color: var(--atria-purple);
+}
+
+.menu__link--active {
+  background: var(--atria-purple-alpha-8);
+  color: var(--atria-purple);
+  font-weight: 600;
+}
+
+.menu__list-item-collapsible:hover {
+  background: var(--atria-purple-alpha-4);
+}
+
+/* ==================== Main Content ==================== */
+
+.main-wrapper {
+  background: var(--atria-background);
+}
+
+article {
+  max-width: 900px;
+}
+
+/* Clean content container */
+.theme-doc-markdown {
+  background: white;
+  border-radius: var(--ifm-global-radius);
+  padding: 2rem;
+  border: 1px solid var(--atria-purple-alpha-8);
+  box-shadow: var(--ifm-global-shadow-md);
+}
+
+/* ==================== Headings ==================== */
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--ifm-heading-color);
+  font-weight: 600;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  margin-top: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--atria-purple-alpha-8);
+}
+
+/* ==================== Links ==================== */
+
+a {
+  color: var(--atria-purple);
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--atria-purple-hover);
+  text-decoration: none;
+}
+
+/* ==================== Buttons ==================== */
+
+.button {
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.button--primary {
+  background: var(--atria-purple);
+  color: white;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.2);
+}
+
+.button--primary:hover {
+  background: var(--atria-purple-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  color: white;
+}
+
+.button--secondary {
+  background: var(--atria-purple-alpha-8);
+  color: var(--atria-purple);
+  border: 1px solid var(--atria-purple-alpha-15);
+}
+
+.button--secondary:hover {
+  background: var(--atria-purple-alpha-15);
+  color: var(--atria-purple-dark);
+}
+
+/* ==================== Cards & Containers ==================== */
+
+.card {
+  background: white;
+  border: 1px solid var(--atria-purple-alpha-10);
+  border-radius: var(--ifm-global-radius);
+  box-shadow: var(--ifm-global-shadow-lw);
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--ifm-global-shadow-md);
+}
+
+/* ==================== Code Blocks ==================== */
+
+code {
+  background: var(--atria-purple-alpha-4);
+  border: 1px solid var(--atria-purple-alpha-10);
+  border-radius: 4px;
+  padding: 0.15rem 0.4rem;
+  font-size: 0.9em;
+}
+
+pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+div[class^='codeBlockContainer'] {
+  border-radius: var(--ifm-code-border-radius);
+  box-shadow: var(--ifm-global-shadow-lw);
+  border: 1px solid var(--atria-purple-alpha-8);
+}
+
+/* ==================== Admonitions ==================== */
+
+.admonition {
+  border-radius: var(--ifm-global-radius);
+  border: 1px solid;
+}
+
+.admonition-note {
+  background: rgba(139, 92, 246, 0.04);
+  border-color: rgba(139, 92, 246, 0.15);
+}
+
+.admonition-tip {
+  background: rgba(34, 197, 94, 0.04);
+  border-color: rgba(34, 197, 94, 0.15);
+}
+
+.admonition-warning {
+  background: rgba(245, 158, 11, 0.04);
+  border-color: rgba(245, 158, 11, 0.15);
+}
+
+.admonition-danger {
+  background: rgba(220, 38, 38, 0.04);
+  border-color: rgba(220, 38, 38, 0.15);
+}
+
+/* ==================== Tables ==================== */
+
+table {
+  border-radius: var(--ifm-global-radius);
+  overflow: hidden;
+  border: 1px solid var(--atria-purple-alpha-8);
+}
+
+thead {
+  background: var(--atria-purple-alpha-4);
+}
+
+th {
+  color: var(--atria-purple-dark);
+  font-weight: 600;
+}
+
+tr {
+  border-bottom: 1px solid var(--atria-purple-alpha-8);
+  transition: background 0.2s ease;
+}
+
+tr:hover {
+  background: var(--atria-purple-alpha-4);
+}
+
+/* ==================== Badges ==================== */
+
+.badge {
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+}
+
+/* HTTP Method Badges (used by OpenAPI plugin) */
+
+/* GET = badge--primary */
+.badge--primary {
+  background: rgba(34, 197, 94, 0.1) !important;
+  color: #16a34a !important;
+  border: 1px solid rgba(34, 197, 94, 0.2) !important;
+}
+
+/* POST = badge--success */
+.badge--success {
+  background: rgba(139, 92, 246, 0.1) !important;
+  color: #8b5cf6 !important;
+  border: 1px solid rgba(139, 92, 246, 0.2) !important;
+}
+
+/* DELETE = badge--danger */
+.badge--danger {
+  background: rgba(220, 38, 38, 0.1) !important;
+  color: #dc2626 !important;
+  border: 1px solid rgba(220, 38, 38, 0.2) !important;
+}
+
+/* PUT = badge--info */
+.badge--info {
+  background: rgba(245, 158, 11, 0.1) !important;
+  color: #f59e0b !important;
+  border: 1px solid rgba(245, 158, 11, 0.2) !important;
+}
+
+/* PATCH = badge--warning */
+.badge--warning {
+  background: rgba(168, 85, 247, 0.1) !important;
+  color: #a855f7 !important;
+  border: 1px solid rgba(168, 85, 247, 0.2) !important;
+}
+
+/* ==================== API Method Badges ==================== */
+
+/* Target OpenAPI plugin method badges with !important to override defaults */
+
+/* GET - Green (safe, read operations) */
+span[class*="get"],
+.get {
+  background: rgba(34, 197, 94, 0.1) !important;
+  color: #16a34a !important;
+  border: 1px solid rgba(34, 197, 94, 0.2) !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  padding: 4px 10px !important;
+  text-transform: uppercase !important;
+}
+
+/* POST - Purple (create operations - brand color) */
+span[class*="post"],
+.post {
+  background: rgba(139, 92, 246, 0.1) !important;
+  color: #8b5cf6 !important;
+  border: 1px solid rgba(139, 92, 246, 0.2) !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  padding: 4px 10px !important;
+  text-transform: uppercase !important;
+}
+
+/* PUT - Orange (update/replace) */
+span[class*="put"],
+.put {
+  background: rgba(245, 158, 11, 0.1) !important;
+  color: #f59e0b !important;
+  border: 1px solid rgba(245, 158, 11, 0.2) !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  padding: 4px 10px !important;
+  text-transform: uppercase !important;
+}
+
+/* PATCH - Light Purple (partial update) */
+span[class*="patch"],
+.patch {
+  background: rgba(168, 85, 247, 0.1) !important;
+  color: #a855f7 !important;
+  border: 1px solid rgba(168, 85, 247, 0.2) !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  padding: 4px 10px !important;
+  text-transform: uppercase !important;
+}
+
+/* DELETE - Red (danger) */
+span[class*="delete"],
+.delete {
+  background: rgba(220, 38, 38, 0.1) !important;
+  color: #dc2626 !important;
+  border: 1px solid rgba(220, 38, 38, 0.2) !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  padding: 4px 10px !important;
+  text-transform: uppercase !important;
+}
+
+/* ==================== Pagination ==================== */
+
+.pagination-nav__link {
+  background: white;
+  border: 1px solid var(--atria-purple-alpha-10);
+  border-radius: var(--ifm-global-radius);
+  transition: all 0.2s ease;
+}
+
+.pagination-nav__link:hover {
+  background: var(--atria-purple-alpha-4);
+  border-color: var(--atria-purple-alpha-15);
+  box-shadow: var(--ifm-global-shadow-lw);
+}
+
+/* ==================== TOC (Table of Contents) ==================== */
+
+.table-of-contents__link {
+  color: var(--ifm-color-content-secondary);
+  transition: all 0.2s ease;
+}
+
+.table-of-contents__link:hover {
+  color: var(--atria-purple);
+}
+
+.table-of-contents__link--active {
+  color: var(--atria-purple);
+  font-weight: 600;
+}
+
+/* ==================== Footer ==================== */
+
+.footer {
+  background: white;
+  border-top: 1px solid var(--atria-purple-alpha-8);
+}
+
+.footer__link-item {
+  color: var(--ifm-color-content-secondary);
+  transition: color 0.2s ease;
+}
+
+.footer__link-item:hover {
+  color: var(--atria-purple);
+}
+
+/* ==================== Breadcrumbs ==================== */
+
+.breadcrumbs__link {
+  background: var(--atria-purple-alpha-4);
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.breadcrumbs__link:hover {
+  background: var(--atria-purple-alpha-8);
+  color: var(--atria-purple);
+}
+
+/* ==================== Search ==================== */
+
+.navbar__search-input {
+  background: white;
+  border: 1px solid var(--atria-purple-alpha-10);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.navbar__search-input:focus {
+  border-color: var(--atria-purple-alpha-15);
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1);
+}
+
+/* ==================== DocCards (Category Index) ==================== */
+
+.card-demo {
+  border: 1px solid var(--atria-purple-alpha-10);
+  transition: all 0.2s ease;
+}
+
+.card-demo:hover {
+  border-color: var(--atria-purple-alpha-15);
+  box-shadow: var(--ifm-global-shadow-md);
+}
+
+/* API Endpoint Cards - Override Infima variables scoped to cards */
+.row .col article.card.padding--lg,
+.row .col a.card.padding--lg {
+  --ifm-spacing-horizontal: 0.75rem;
+  --ifm-spacing-vertical: 0.75rem;
+  margin-bottom: 8px;
+  min-height: auto;
+  background: white;
+}
+
+/* Hide the big title and emoji completely */
+.card__header,
+.card__header h3,
+.card__header a,
+article.card > header,
+article.card > a > header,
+h2[class*="cardTitle"] {
+  display: none !important;
+}
+
+/* Show only the colored badge text */
+.card__body {
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 0.875rem !important;
+  color: var(--ifm-color-content-secondary) !important;
+}
+
+/* Make the body text visible and on one line */
+.card__body p {
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Make API method badges in cards smaller and inline */
+.card .badge {
+  font-size: 0.6rem !important;
+  padding: 2px 6px !important;
+  margin-right: 0.5rem !important;
+  vertical-align: middle !important;
+}
+
+/* Remove pastel backgrounds from OpenAPI cards */
+.card {
+  background: white !important;
+}
+
+[data-theme='dark'] article.card,
+[data-theme='dark'] .row > div > article.card {
+  background: #242526 !important;
+}
+
+/* ==================== Dark Mode Overrides ==================== */
+
+[data-theme='dark'] body {
+  background: #1b1b1d;
+}
+
+[data-theme='dark'] .main-wrapper {
+  background: #1b1b1d;
+}
+
+[data-theme='dark'] .navbar {
+  background: #1b1b1d;
+  border-bottom: 1px solid rgba(168, 85, 247, 0.15);
+}
+
+[data-theme='dark'] .theme-doc-sidebar-container {
+  background: #1b1b1d;
+  border-right: 1px solid rgba(168, 85, 247, 0.15);
+}
+
+[data-theme='dark'] .theme-doc-markdown {
+  background: #242526;
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+[data-theme='dark'] .card {
+  background: #242526;
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+[data-theme='dark'] .footer {
+  background: #1b1b1d;
+  border-top: 1px solid rgba(168, 85, 247, 0.15);
+}
+
+[data-theme='dark'] .pagination-nav__link {
+  background: #242526;
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+[data-theme='dark'] .navbar__search-input {
+  background: #242526;
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  color: #e2e8f0;
+}
+
+[data-theme='dark'] code {
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+[data-theme='dark'] .menu__link:hover {
+  background: rgba(168, 85, 247, 0.1);
+}
+
+[data-theme='dark'] .menu__link--active {
+  background: rgba(168, 85, 247, 0.15);
+}
+
+[data-theme='dark'] .navbar__title {
+  color: white;
+}
+
+[data-theme='dark'] .breadcrumbs__link {
+  background: rgba(168, 85, 247, 0.1);
+  color: #a855f7;
+}
+
+[data-theme='dark'] .breadcrumbs__link:hover {
+  background: rgba(168, 85, 247, 0.15);
+}
+
+/* ==================== Mobile Responsiveness ==================== */
+
+@media (max-width: 996px) {
+  .theme-doc-markdown {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .theme-doc-markdown {
+    padding: 1rem;
+  }
+}
+
+/* ==================== Smooth Animations ==================== */
+
+* {
+  transition-timing-function: ease;
+}
+
+/* Subtle hover effect for interactive elements */
+button, a, .menu__link, .card {
+  will-change: transform;
+}

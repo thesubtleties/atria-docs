@@ -1,0 +1,11 @@
+node_modules
+npm-debug.log
+build
+.docusaurus
+.cache-loader
+.git
+.gitignore
+README.md
+.env*
+*.log
+.DS_Store

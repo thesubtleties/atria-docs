@@ -1,0 +1,221 @@
+/**
+ * Atria Documentation Homepage
+ * Matching the main app's landing page aesthetic
+ */
+
+.heroBanner {
+  padding: 6rem 2rem 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--atria-purple);
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Logo container */
+.logoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  width: clamp(120px, 20vw, 180px);
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(139, 92, 246, 0.15));
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logoText {
+  font-family: 'Nunito', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  margin: 0;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Tagline */
+.tagline {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 3rem 0;
+  letter-spacing: 0.02em;
+}
+
+/* CTA Buttons */
+.buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.ctaButton {
+  padding: 1rem 2.5rem !important;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  min-width: 180px;
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: var(--atria-purple) !important;
+  border: none !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+  background: white !important;
+  color: var(--atria-purple-hover) !important;
+}
+
+/* Features Section */
+.features {
+  padding: 4rem 2rem;
+  background: white;
+}
+
+.feature {
+  padding: 1rem;
+}
+
+.featureContent {
+  background: var(--atria-glass-bg);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  height: 100%;
+  border: 1px solid var(--atria-purple-alpha-10);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.04);
+}
+
+.featureContent:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.12);
+  border-color: var(--atria-purple-alpha-15);
+}
+
+.featureTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--atria-purple);
+  margin-bottom: 1rem;
+}
+
+.featureDescription {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ifm-color-content-secondary);
+  margin: 0;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 4rem 1.5rem 3rem;
+    min-height: 60vh;
+  }
+
+  .logoContainer {
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .logo {
+    width: clamp(100px, 25vw, 140px);
+  }
+
+  .logoText {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
+
+  .tagline {
+    font-size: clamp(1rem, 4vw, 1.25rem);
+    margin-bottom: 2rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .ctaButton {
+    width: 100%;
+    min-width: unset;
+    padding: 0.875rem 2rem !important;
+  }
+
+  .features {
+    padding: 3rem 1rem;
+  }
+
+  .feature {
+    margin-bottom: 1rem;
+  }
+
+  .featureContent {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .featureTitle {
+    font-size: 1.25rem;
+  }
+
+  .featureDescription {
+    font-size: 0.9rem;
+  }
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .heroBanner {
+  background: #1b1b1d;
+}
+
+[data-theme='dark'] .logoText {
+  color: white;
+}
+
+[data-theme='dark'] .tagline {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme='dark'] .ctaButton {
+  background: #242526 !important;
+  color: #a855f7 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='dark'] .ctaButton:hover {
+  background: #2d2d2f !important;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='dark'] .features {
+  background: #1b1b1d;
+}
+
+[data-theme='dark'] .featureContent {
+  background: #242526;
+  border-color: rgba(168, 85, 247, 0.2);
+}
+
+[data-theme='dark'] .featureTitle {
+  color: #a855f7;
+}
