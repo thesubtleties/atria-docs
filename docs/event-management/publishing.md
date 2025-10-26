@@ -388,7 +388,7 @@ Your event is published! Now:
 - **[Invite attendees](../attendee-management/inviting-attendees)** - Bring people to your event
 - **[Add sessions](../sessions-speakers/creating-sessions)** - Build your agenda (if not done yet)
 - **[Manage speakers](../sessions-speakers/managing-speakers)** - Add presenters
-- **[Monitor engagement](../monitoring/event-analytics)** - Track registration and activity
+- **Monitor engagement** - Track registration and activity
 
 ---
 

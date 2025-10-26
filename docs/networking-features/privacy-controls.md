@@ -457,8 +457,8 @@ Each event respects its override or falls back to global settings.
 ## Related Topics
 
 - [Making Connections](./making-connections) - How to network at events
-- [Your Profile](../user-guide/your-profile) - Update your profile information (coming soon)
-- [Account Settings](../user-guide/account-settings) - Manage your account (coming soon)
+- [Your Profile](../your-account/your-profile) - Update your profile information
+- [Account & Security Settings](../your-account/account-security-settings) - Manage your account and privacy
 
 ---
 
