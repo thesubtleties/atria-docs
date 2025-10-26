@@ -273,7 +273,7 @@ The Security tab includes helpful tips:
 Simple tab that redirects you to edit your profile.
 
 **Content:**
-> "Profile settings can be updated on your [profile page](link)"
+> "Profile settings can be updated on your [profile page](./your-profile)"
 
 **Click the link** to go to your profile page where you can edit your information.
 

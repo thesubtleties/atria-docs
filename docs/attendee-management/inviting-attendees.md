@@ -530,7 +530,7 @@ After inviting attendees:
 
 - **[Manage event roles](./managing-roles)** - Understand and update attendee roles
 - **[Moderate your event](./moderation)** - Handle disruptive users
-- **[Monitor engagement](../monitoring/event-analytics)** - Track who's active
+- **Monitor engagement** - Track who's active in your event
 
 ---
 
