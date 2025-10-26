@@ -371,7 +371,7 @@ Privacy settings are context-aware:
 
 - [Privacy Controls](./privacy-controls) - Control what others see about you
 - Chat & Messaging - How to use direct messages (coming soon)
-- [Your Profile](../user-guide/your-profile) - Update your profile information (coming soon)
+- [Your Profile](../your-account/your-profile) - Update your profile information
 
 ---
 
