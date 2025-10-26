@@ -177,6 +177,38 @@ button[class*='toggle']:hover svg,
   border-right: 1px solid var(--atria-purple-alpha-8);
 }
 
+/* Top-level links (like "intro") - not nested in categories */
+.theme-doc-sidebar-menu > .menu__list > .menu__list-item:not(.menu__list-item-collapsible) .menu__link {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--atria-purple-dark);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Category headers (collapsible sections) */
+.menu__list-item-collapsible .menu__link {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--atria-purple-dark);
+  letter-spacing: 0.015em;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.menu__list-item-collapsible .menu__link:hover {
+  background: var(--atria-purple-alpha-8);
+  color: var(--atria-purple);
+}
+
+/* Nested page links (items inside categories) */
+.menu__list .menu__list .menu__link {
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+/* Base link styling */
 .menu__link {
   border-radius: 6px;
   transition: all 0.2s ease;
@@ -194,7 +226,7 @@ button[class*='toggle']:hover svg,
 }
 
 .menu__list-item-collapsible:hover {
-  background: var(--atria-purple-alpha-4);
+  background: transparent;
 }
 
 /* ==================== Main Content ==================== */
@@ -523,6 +555,12 @@ span[class*="delete"],
 
 .footer__link-item:hover {
   color: var(--atria-purple);
+}
+
+/* Copyright text - darker/purple tinted */
+.footer__copyright {
+  color: var(--atria-purple) !important;
+  opacity: 0.7;
 }
 
 /* ==================== Breadcrumbs ==================== */

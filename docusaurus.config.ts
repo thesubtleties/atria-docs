@@ -93,6 +93,7 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
+      defaultMode: 'light',
       respectPrefersColorScheme: true,
     },
     navbar: {
@@ -158,6 +159,10 @@ const config: Config = {
               label: 'GitHub Repository',
               href: 'https://github.com/thesubtleties/atria',
             },
+            {
+              label: 'LinkedIn',
+              href: 'https://www.linkedin.com/company/atria-dot-gg/',
+            },
           ],
         },
         {
@@ -174,7 +179,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} SBTL LLC. Built with Docusaurus.`,
+      copyright: `<a href="https://atria.gg" target="_blank" rel="noopener noreferrer">atria</a> is made with 💜 by <a href="https://sbtl.dev" target="_blank" rel="noopener noreferrer">sbtl</a>`,
     },
     prism: {
       theme: prismThemes.github,

@@ -1,0 +1,80 @@
+name: Build and Deploy Atria Docs
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # Manual trigger option
+
+env:
+  DOCS_IMAGE: sbtl/atria-docs
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    outputs:
+      image-tag: ${{ steps.generate-tag.outputs.tag }}
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        ref: main
+
+    - name: Generate unique image tag
+      id: generate-tag
+      run: |
+        TAG="prod-${GITHUB_SHA::8}-$(date +%s)"
+        echo "tag=${TAG}" >> $GITHUB_OUTPUT
+        echo "Generated tag: ${TAG}"
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and push docs image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: |
+          ${{ env.DOCS_IMAGE }}:${{ steps.generate-tag.outputs.tag }}
+          ${{ env.DOCS_IMAGE }}:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    steps:
+    - name: Deploy to k3s
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.K3S_HOST }}
+        username: ${{ secrets.K3S_USER }}
+        key: ${{ secrets.K3S_SSH_KEY }}
+        port: ${{ secrets.K3S_PORT }}
+        script: |
+          IMAGE_TAG="${{ needs.build-and-push.outputs.image-tag }}"
+
+          # Set KUBECONFIG to use user's config
+          export KUBECONFIG=$HOME/.kube/config
+
+          # Pull the new image with specific tag
+          echo "🚀 Pulling Docker image with tag: ${IMAGE_TAG}"
+          sudo k3s crictl pull ${{ env.DOCS_IMAGE }}:${IMAGE_TAG}
+
+          # Update deployment in atria-docs namespace
+          echo "Updating docs deployment..."
+          kubectl set image deployment/docs-deployment docs=${{ env.DOCS_IMAGE }}:${IMAGE_TAG} -n atria-docs
+
+          # Wait for rollout to complete
+          echo "Waiting for rollout..."
+          kubectl rollout status deployment/docs-deployment -n atria-docs --timeout=300s
+
+          echo "✅ Docs deployment completed successfully!"

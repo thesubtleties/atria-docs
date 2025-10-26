@@ -66,10 +66,10 @@ Atria provides multiple development environments. For first-time setup, use the 
 
 Select option **1) Standard Local Development** for the simplest setup.
 
-Alternatively, run directly:
+Alternatively, run the script directly:
 
 ```bash
-./start-local-dev-tmux.sh
+./scripts/dev/start-local-dev-tmux.sh
 ```
 
 ### 4. Access Atria
@@ -100,7 +100,7 @@ Atria offers 4 different development environments for different use cases. Use t
 **Best for:** General development, UI work, getting started
 
 ```bash
-./start-local-dev-tmux.sh
+./scripts/dev/start-local-dev-tmux.sh
 ```
 
 **Features:**
@@ -120,7 +120,7 @@ Atria offers 4 different development environments for different use cases. Use t
 **Best for:** Testing clustering, Socket.IO, caching, production-like behavior
 
 ```bash
-./start-redis-dev-tmux.sh
+./scripts/dev/start-redis-dev-tmux.sh
 ```
 
 **Features:**
@@ -146,7 +146,7 @@ Atria offers 4 different development environments for different use cases. Use t
 **Best for:** Testing SEO, performance, production builds
 
 ```bash
-./start-preview-tmux.sh
+./scripts/dev/start-preview-tmux.sh
 ```
 
 **Features:**
@@ -170,7 +170,7 @@ Atria offers 4 different development environments for different use cases. Use t
 **Best for:** Mobile/phone testing, remote access
 
 ```bash
-./start-tailscale-dev-tmux.sh
+./scripts/dev/start-tailscale-dev-tmux.sh
 ```
 
 **Features:**
@@ -190,7 +190,7 @@ Some dev environments support database seeding with demo data:
 
 ```bash
 # With Redis/Traefik environment
-./start-redis-dev-tmux.sh
+./scripts/dev/start-redis-dev-tmux.sh
 # You'll be prompted: "Seed the database? (y/N)"
 ```
 
@@ -198,7 +198,7 @@ Or set the environment variable:
 
 ```bash
 export SEED_DB=true
-./start-redis-dev-tmux.sh
+./scripts/dev/start-redis-dev-tmux.sh
 ```
 
 ### MinIO / S3 Storage
@@ -225,25 +225,36 @@ MINIO_BUCKET_PRIVATE=atria-private
 
 #### Option 2: Run MinIO Locally
 
-Add a MinIO service to your Docker Compose setup:
+Run MinIO in Docker:
+
+```bash
+docker run -d \
+  --name atria-minio \
+  -p 9000:9000 \
+  -p 9001:9001 \
+  -e "MINIO_ROOT_USER=minioadmin" \
+  -e "MINIO_ROOT_PASSWORD=minioadmin" \
+  -v minio_data:/data \
+  minio/minio:latest \
+  server /data --console-address ":9001"
+```
+
+Or add to your Docker Compose file if preferred (requires manual setup):
 
 ```yaml
-# Add to docker-compose.local-dev.yml
+# Can be added to docker-compose files if needed
 services:
   minio:
     image: minio/minio:latest
     command: server /data --console-address ":9001"
     ports:
-      - "9000:9000"  # API
-      - "9001:9001"  # Console
+      - "9000:9000"
+      - "9001:9001"
     environment:
       - MINIO_ROOT_USER=minioadmin
       - MINIO_ROOT_PASSWORD=minioadmin
     volumes:
       - minio_data:/data
-
-volumes:
-  minio_data:
 ```
 
 Then configure:
@@ -355,10 +366,105 @@ curl http://your-minio-endpoint:9000
 docker logs atria-api-dev
 ```
 
+## Production Deployment
+
+For production deployments, Atria includes a base `docker-compose.production.yml` file. **This requires customization** based on your infrastructure needs.
+
+### Base Production Setup
+
+The production compose file provides a starting point:
+
+```yaml
+# docker-compose.production.yml (base template)
+services:
+  backend:
+    build:
+      context: ./backend/atria
+      dockerfile: ../../deploy/Dockerfile.backend.prod
+    expose:
+      - '5000'
+    env_file:
+      - ./backend/atria/.flaskenv
+      - .env.production
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - default
+      - shared_portainer_network  # Example: Portainer integration
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../deploy/Dockerfile.frontend.prod
+    expose:
+      - '80'
+    depends_on:
+      - backend
+
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data_prod:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready']
+```
+
+### Production Requirements
+
+You will need to configure:
+
+1. **Reverse Proxy / Load Balancer**
+   - Nginx, Traefik, Caddy, or similar
+   - SSL/TLS certificates
+   - Domain routing
+
+2. **External Services**
+   - **Redis** - Required for multi-instance deployments and Socket.IO clustering
+   - **PostgreSQL** - Can use the Docker container or external database
+   - **S3-compatible storage** - MinIO, AWS S3, Backblaze B2, etc.
+
+3. **Environment Configuration**
+   - Create `.env.production` with production credentials
+   - Configure all required services (Redis, MinIO, SMTP, etc.)
+   - Set appropriate security headers and CORS settings
+
+4. **Infrastructure Considerations**
+   - Container orchestration (Docker Swarm, Kubernetes, etc.)
+   - Backup strategy (database, file storage)
+   - Monitoring and logging
+   - Scaling strategy (horizontal scaling requires Redis)
+
+### Production Checklist
+
+- [ ] Configure reverse proxy with SSL/TLS
+- [ ] Set up external Redis instance
+- [ ] Configure S3-compatible storage with proper access controls
+- [ ] Set strong database credentials
+- [ ] Configure email service (SMTP2GO or similar)
+- [ ] Set up database backups
+- [ ] Configure monitoring and alerting
+- [ ] Test Socket.IO clustering if using multiple backend instances
+- [ ] Review security settings (CORS, CSP, etc.)
+- [ ] Set up CI/CD pipeline (optional)
+
+:::warning Production Customization Required
+The base `docker-compose.production.yml` is a **template** and requires customization for your specific infrastructure. It's designed to give you a starting point, not a ready-to-deploy solution.
+:::
+
+:::tip Managed Hosting Alternative
+If you prefer not to manage infrastructure, consider using [atria.gg managed hosting](https://atria.gg) or contact us about a [custom private instance](mailto:steven@sbtl.dev) with managed setup and maintenance.
+:::
+
 ## Next Steps
 
-- **[API Documentation](https://atria.gg/new-swagger)** - Explore the REST API
+- **[API Documentation](/docs/api/atria-api)** - Explore the REST API
 - **[GitHub Repository](https://github.com/thesubtleties/atria)** - View source code and contribute
+- **[GitHub Discussions](https://github.com/thesubtleties/atria/discussions)** - Ask questions and share ideas
 
 ---
 

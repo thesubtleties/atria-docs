@@ -30,3 +30,7 @@ pnpm-debug.log*
 
 # OS
 Thumbs.db
+
+# Documentation build tracking (internal use only)
+DOCS_PROGRESS.md
+agent-analysis/
