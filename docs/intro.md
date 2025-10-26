@@ -4,56 +4,82 @@ sidebar_position: 1
 
 # Welcome to Atria
 
-**Transform your events into powerful networking experiences with real-time engagement and meaningful connections.**
+**Build meaningful connections that last beyond your events.**
 
-Atria is a comprehensive event management platform designed for organizations that understand the true value of events lies in the connections made. Whether you're running corporate conferences, nonprofit galas, educational workshops, or community meetups, Atria provides the sophisticated tools needed to create memorable experiences.
+Atria is an open-source event management platform that combines comprehensive event administration with privacy-respecting networking features. Whether you're running corporate conferences, nonprofit fundraising galas, educational workshops, church events, creator meetups, or community gatherings, Atria provides the tools you need without the bloat you don't.
 
 ## What is Atria?
 
 Atria is an **open-source event management and networking platform** that combines:
 
-- **Event Management** - Multi-day events, session scheduling, speaker coordination
-- **Real-Time Communication** - Chat rooms, direct messaging, Socket.IO integration
-- **Intelligent Networking** - Connection requests, icebreakers, attendee discovery
-- **Multi-Tenant Architecture** - Support multiple organizations with isolated data
-- **Professional Features** - Sponsor management, role-based permissions, hybrid events
+- **Event Management** - Multi-day events, session scheduling, speaker coordination, hybrid event support
+- **Real-Time Communication** - Multi-level chat rooms, direct messaging, session-specific channels
+- **Privacy-Respecting Networking** - Icebreaker-based connection requests, attendee discovery with privacy controls
+- **Multi-Tenant Architecture** - Organization-level management with complete data isolation
+- **Professional Features** - Multi-tier sponsor management, granular role-based permissions, secure file storage
 
 ## Why Choose Atria?
 
-### Event-Focused Experience
-Unlike complex enterprise tools, Atria is laser-focused on **your event**. No marketing email tools, no CRM bloat, no learning curve - just powerful event and networking features that work immediately.
+### Event-Focused, Not Platform-Focused
+When you're managing an event, you see only that event. No distracting sidebars, no unrelated organizations, no feature overload. Just powerful tools to run your event and facilitate meaningful networking.
 
-### Open Source & Data Ownership
-- **Complete transparency** - Know exactly what happens with your data
-- **True ownership** - Export or migrate anytime without vendor lock-in
-- **Flexible deployment** - Self-host for free or use commercial hosting
+### True Open Source & Data Ownership
+- **AGPL-3.0 licensed** - Complete transparency and freedom
+- **Your data stays yours** - Export or migrate anytime, no vendor lock-in
+- **Self-host or cloud** - Run it yourself for free, or use managed hosting
+- **No surprise pricing** - Never held hostage by sudden price increases
+- **Community-driven** - Talk directly to the developers who built it
+
+### Built for Real Events
+Corporations, nonprofits, education, faith organizations, influencers, communities - Atria handles conferences, fundraising galas, workshops, church events, creator meetups, professional associations, and everything in between.
 
 ### Modern Technology Stack
 
 **Backend:**
-- Python 3.13 + Flask
-- PostgreSQL 15
-- Redis 7 (for caching & real-time features)
-- Flask-SocketIO (WebSocket support)
-- MinIO object storage (S3-compatible)
+- Python 3.13 with Flask framework
+- PostgreSQL 15 with SQLAlchemy ORM
+- Redis 7 for caching, presence tracking, and Socket.IO clustering
+- Flask-SocketIO for real-time features
+- S3-compatible storage (MinIO, AWS S3, or similar)
 
 **Frontend:**
-- React 18 + Vite
-- Mantine UI components
-- Redux Toolkit + RTK Query
-- Socket.IO Client
+- React 18 with Vite 6 build system
+- Mantine UI 7 component library
+- Redux Toolkit + RTK Query for state management
+- Socket.IO Client for real-time updates
+- Zod for runtime validation
 
 ## Quick Links
 
 - **[Getting Started →](./getting-started/installation)** - Install Atria locally in 5 minutes
-- **[API Reference →](https://atria.gg/new-swagger)** - Complete REST API documentation
-- **[Live Demo →](https://atria.gg)** - Try Atria in action
-- **[GitHub Repository →](https://github.com/thesubtleties/atria)** - View the source code
+- **[API Reference →](/docs/api/atria-api)** - Complete REST API documentation
+- **[Live Demo →](https://atria.gg/app)** - Try Atria in action
+- **[GitHub Repository →](https://github.com/thesubtleties/atria)** - View the source code and contribute
+
+## Project Status
+
+**Current State:** Live at [atria.gg](https://atria.gg) with active development
+
+- 196 passing tests (~47% backend coverage, target: 80%+)
+- Automated CI/CD with GitHub Actions
+- Multi-instance scaling ready (Socket.IO clustering with Redis)
+- Actively maintained with regular updates
+
+## Deployment Options
+
+### Self-Hosted (Free)
+Run your own instance with complete control. Free under AGPL-3.0 license. Perfect for organizations with specific compliance requirements.
+
+### Managed Hosting (atria.gg)
+**Currently in Early Access** - Free with no event size limits while we finalize features and stabilize the platform. Free tier (50 attendees) after v1.0 release.
+
+### Custom Private Instance
+Managed setup with complete isolation, custom branding and features, flexible commercial licensing. Contact [steven@sbtl.dev](mailto:steven@sbtl.dev) for pricing.
 
 ## What's Next?
 
-Ready to get started? Head to the [Installation Guide](./getting-started/installation) to set up Atria locally.
+Ready to get started? Head to the [Installation Guide](./getting-started/installation) to set up Atria locally, or dive into the [API Reference](/docs/api/atria-api) to explore the platform's capabilities.
 
 ---
 
-_Have questions? [Contact us](mailto:steven@sbtl.dev) or [open an issue on GitHub](https://github.com/thesubtleties/atria/issues)._
+**Have questions?** [Contact us](mailto:steven@sbtl.dev) | [GitHub Issues](https://github.com/thesubtleties/atria/issues) | [GitHub Discussions](https://github.com/thesubtleties/atria/discussions)

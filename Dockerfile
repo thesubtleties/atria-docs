@@ -13,6 +13,9 @@ RUN npm ci
 # Copy source files
 COPY . .
 
+# Generate API documentation from production OpenAPI spec
+RUN npm run gen-api-docs
+
 # Build the static site
 RUN npm run build
 
