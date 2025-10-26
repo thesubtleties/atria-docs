@@ -73,9 +73,7 @@ const config: Config = {
         docsPluginId: 'classic',
         config: {
           atria: {
-            specPath: process.env.NODE_ENV === 'production'
-              ? 'https://atria.gg/api-spec.json'
-              : 'http://localhost/api-spec.json',
+            specPath: 'https://atria.gg/api-spec.json',
             outputDir: 'docs/api',
             sidebarOptions: {
               groupPathsBy: 'tag',
