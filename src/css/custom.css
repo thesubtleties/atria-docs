@@ -756,3 +756,28 @@ h2[class*="cardTitle"] {
 button, a, .menu__link, .card {
   will-change: transform;
 }
+
+/* ==================== Mobile Sidebar Menu ==================== */
+
+/* Make mobile sidebar header purple in light mode */
+@media (max-width: 996px) {
+  /* Mobile sidebar container */
+  html:not([data-theme='dark']) .navbar-sidebar {
+    background: white;
+  }
+
+  /* Top header section of mobile sidebar - make purple */
+  html:not([data-theme='dark']) .navbar-sidebar__brand {
+    background: var(--atria-purple) !important;
+  }
+
+  /* Logo text white on purple background */
+  html:not([data-theme='dark']) .navbar-sidebar__brand .navbar__title {
+    color: white !important;
+  }
+
+  /* Close button (X) white on purple background */
+  html:not([data-theme='dark']) .navbar-sidebar__close {
+    color: white !important;
+  }
+}

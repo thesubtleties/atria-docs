@@ -88,8 +88,7 @@ const config: Config = {
   themes: ['docusaurus-theme-openapi-docs'],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/docs-og.png',
     colorMode: {
       defaultMode: 'light',
       respectPrefersColorScheme: true,
