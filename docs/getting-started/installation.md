@@ -32,28 +32,58 @@ cd atria
 
 ### 2. Set Up Environment Variables
 
-Copy the example environment file:
+Copy the environment files (you need **BOTH**):
 
 ```bash
-cp .env.example .env.development
+cp .env.example .env                                # For Docker Compose
+cp .env.development.example .env.development        # For backend app
 ```
 
-Edit `.env.development` with your database credentials:
+**Why two files?**
+- `.env` → Used by Docker Compose to set up PostgreSQL (minimal config)
+- `.env.development` → Used by the Flask backend application (full config)
+
+**For local development, the defaults work out of the box!**
+
+For production or customization, edit `.env.development` with:
 
 ```bash
 # Database (required)
-POSTGRES_USER=atria_user
-POSTGRES_PASSWORD=your_secure_password
+POSTGRES_USER=dev_user
+POSTGRES_PASSWORD=dev_password
 POSTGRES_DB=atria_dev
 
-# Ports (defaults work fine)
-BACKEND_PORT=5000
-FRONTEND_PORT=5173
-VITE_API_URL=http://localhost:5000/api
+# Security (required)
+SECRET_KEY=change-this-secret-key-in-production
+JWT_SECRET_KEY=change-this-jwt-secret-in-production
+
+# Encryption key for Mux credentials and sensitive data (required)
+# Generate with: python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+ENCRYPTION_KEY=change-this-encryption-key-in-production
+
+# MinIO/S3 credentials (for file uploads)
+MINIO_ENDPOINT=localhost:9000
+MINIO_ACCESS_KEY=minioadmin
+MINIO_SECRET_KEY=minioadmin
+
+# Email settings (for invitations) - optional
+SMTP2GO_API_KEY=your_smtp2go_api_key_here
+MAIL_DEFAULT_SENDER=noreply@your-domain.com
+
+# Redis URL (for caching and real-time features) - optional
+# REDIS_URL=redis://localhost:6379/0
 ```
 
-:::info MinIO Configuration
-For local development, you'll need to configure object storage. See the [Storage Configuration](#minio--s3-storage) section below.
+:::warning Required Environment Variables
+- **ENCRYPTION_KEY** is required for storing sensitive data like Mux streaming credentials
+- **SECRET_KEY** and **JWT_SECRET_KEY** should be changed for production
+- Generate secure keys: `python -c "import secrets; print(secrets.token_urlsafe(32))"`
+:::
+
+:::info Optional Services
+- **MinIO/S3**: Required for file uploads (event logos, banners, sponsor images). See [Storage Configuration](#minio--s3-storage).
+- **Email (SMTP2GO)**: Required for invitation emails. The app gracefully degrades without it.
+- **Redis**: Optional but recommended for caching and real-time features. The app works without it.
 :::
 
 ### 3. Choose Your Development Environment
@@ -432,6 +462,12 @@ You will need to configure:
    - Create `.env.production` with production credentials
    - Configure all required services (Redis, MinIO, SMTP, etc.)
    - Set appropriate security headers and CORS settings
+   - **Content Security Policy (CSP)**: Configure in `frontend/csp-header.conf`
+     - Pre-configured for Vimeo, Mux, and Zoom streaming
+     - **Update production-specific domains:**
+       - `storage.sbtl.dev` → Your MinIO/S3 endpoint
+       - `avatars.atria.gg` → Your avatar service domain
+       - `wss://atria.gg` → Your WebSocket domain
 
 4. **Infrastructure Considerations**
    - Container orchestration (Docker Swarm, Kubernetes, etc.)
@@ -444,12 +480,18 @@ You will need to configure:
 - [ ] Configure reverse proxy with SSL/TLS
 - [ ] Set up external Redis instance
 - [ ] Configure S3-compatible storage with proper access controls
-- [ ] Set strong database credentials
+- [ ] Set strong database credentials (`SECRET_KEY`, `JWT_SECRET_KEY`, `ENCRYPTION_KEY`)
 - [ ] Configure email service (SMTP2GO or similar)
 - [ ] Set up database backups
 - [ ] Configure monitoring and alerting
 - [ ] Test Socket.IO clustering if using multiple backend instances
-- [ ] Review security settings (CORS, CSP, etc.)
+- [ ] Review security settings:
+  - [ ] CORS configuration for your domain
+  - [ ] Content Security Policy in `frontend/csp-header.conf`:
+    - [ ] Update storage domain (replace `storage.sbtl.dev` with your MinIO/S3 URL)
+    - [ ] Update avatar domain (replace `avatars.atria.gg` if using custom avatar service)
+    - [ ] Update WebSocket domain (replace `wss://atria.gg` with your domain)
+    - [ ] Verify streaming platform rules (Vimeo, Mux, Zoom) remain intact
 - [ ] Set up CI/CD pipeline (optional)
 
 :::warning Production Customization Required

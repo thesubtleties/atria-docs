@@ -31,6 +31,12 @@ This documentation site provides comprehensive guides for:
 - **Creating Sessions** - Session scheduling, types, status management, and chat modes
 - **Managing Speakers** - Adding speakers, roles, assignments, and speaker profiles
 
+### Video Streaming
+- **Streaming Overview** - Multi-platform comparison (Vimeo, Mux, Zoom) and decision guide
+- **Vimeo Streaming** - Setup, live streaming, VOD, and troubleshooting
+- **Mux Streaming** - PUBLIC and SIGNED playback, BYOA model, live streams and VOD
+- **Zoom Meetings** - Interactive meeting integration and security settings
+
 ### Networking Features (For Attendees)
 - **Making Connections** - Attendee discovery, connection requests, and icebreakers
 - **Privacy Controls** - Email visibility, connection permissions, profile visibility
@@ -52,9 +58,9 @@ This documentation site provides comprehensive guides for:
 
 ## Documentation Stats
 
-- **21 comprehensive user guides** covering organizer and attendee workflows
-- **84% complete** - Core user-facing documentation finished
+- **25 comprehensive user guides** covering organizer and attendee workflows
 - All guides include real-world scenarios, troubleshooting, and best practices
+- Platform comparison tables and decision guides for streaming options
 - Mobile vs desktop differences documented where applicable
 
 ## Development
@@ -140,6 +146,7 @@ atria-docs/
 │   ├── event-management/     # Event creation, customization, publishing, chat rooms, icebreakers
 │   ├── attendee-management/  # Invitations, roles, moderation
 │   ├── sessions-speakers/    # Session and speaker management
+│   ├── video-streaming/      # Multi-platform streaming (Vimeo, Mux, Zoom)
 │   ├── networking-features/  # Connections and privacy (attendee guides)
 │   ├── chat-messaging/       # Chat rooms and DMs (attendee guides)
 │   ├── sponsors/             # Sponsor management

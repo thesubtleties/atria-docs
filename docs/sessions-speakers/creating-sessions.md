@@ -203,30 +203,47 @@ This cannot be undone.
 
 ---
 
-## Stream URLs
+## Video Streaming
 
-Add video links to your sessions using Vimeo:
+Add video streaming to your sessions with support for multiple platforms:
 
 ### Supported Platforms
-- **Vimeo** - Currently the only supported platform
-- Additional platforms (YouTube, etc.) coming soon
+- **Vimeo** - Pre-recorded videos and live streams
+- **Mux** - Professional streaming with analytics (PUBLIC and SIGNED playback)
+- **Zoom** - Live, interactive meetings
 
-### Adding a Stream URL
-1. Edit your session
-2. Find the **Stream URL** field
-3. Paste the full Vimeo URL:
-   - Live stream: `https://vimeo.com/event/123456`
-   - Pre-recorded video: `https://vimeo.com/123456789`
-4. Save the session
+You can use different platforms for different sessions based on your needs. For example, use Mux for your keynote, Zoom for workshops, and Vimeo for pre-recorded content.
 
-The video appears embedded on the session page for attendees to watch.
+### Adding Streaming to a Session
 
-:::info Video Display
-Videos are displayed as soon as you add a stream URL. Future updates will add controls to show videos only when sessions go live, but currently they're visible immediately when the URL is set.
-:::
+1. Edit your session (or create a new one)
+2. Find the **Streaming Platform** dropdown
+3. Select your platform:
+   - **None** - No video streaming
+   - **Vimeo** - For Vimeo videos
+   - **Mux** - For Mux live streams or VOD
+   - **Zoom** - For Zoom meetings
+4. Enter platform-specific details:
+   - **Vimeo:** Video URL or ID
+   - **Mux:** Playback ID and policy (PUBLIC or SIGNED)
+   - **Zoom:** Meeting URL/ID and optional passcode
+5. Save the session
 
-:::tip Test Your Videos
-Always test your Vimeo links before your event starts. Make sure they're publicly accessible and don't require special authentication.
+The video or join button appears on the session page for attendees.
+
+### Which Platform Should I Use?
+
+- **Vimeo** - Simple, reliable video embedding. Best for pre-recorded content or Vimeo Live streams.
+- **Mux PUBLIC** - Professional video hosting without authentication. Great for publicly accessible content.
+- **Mux SIGNED** - Secure video with viewer analytics and time-limited access. Perfect for premium content.
+- **Zoom** - Live interaction with attendees. Essential for workshops and Q&A sessions.
+
+:::tip Learn More About Streaming
+For detailed setup instructions, troubleshooting, and platform comparison:
+- [Video Streaming Overview](../video-streaming/streaming-overview) - Compare all platforms
+- [Vimeo Streaming](../video-streaming/vimeo-streaming) - Vimeo setup guide
+- [Mux Streaming](../video-streaming/mux-streaming) - Mux PUBLIC and SIGNED playback
+- [Zoom Meetings](../video-streaming/zoom-meetings) - Zoom integration guide
 :::
 
 ---

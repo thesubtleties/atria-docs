@@ -196,6 +196,121 @@ To update your organization information:
 Additional organization settings (logo, description, custom branding) are coming soon!
 :::
 
+---
+
+## Mux Streaming Credentials
+
+If you plan to use [Mux SIGNED playback](../video-streaming/mux-streaming) for secure video streaming with analytics, you'll need to configure your organization's Mux credentials.
+
+### What is Mux SIGNED Playback?
+
+Mux SIGNED playback provides:
+- **Secure video access** - Token-based authentication prevents unauthorized sharing
+- **Detailed viewer analytics** - Track who watched, when, and for how long
+- **Time-limited access** - Tokens automatically expire after your session ends
+- **Bring Your Own Account (BYOA)** - Use your own Mux account and credentials
+
+:::note When Do You Need This?
+You only need Mux credentials if you plan to use **Mux SIGNED** playback. Vimeo, Mux PUBLIC, and Zoom don't require any organization-level credentials.
+:::
+
+### Setting Up Mux Credentials
+
+**Prerequisites:**
+- A Mux account (free or paid tier)
+- Organization Owner or Admin role in Atria
+
+**Step 1: Get Your Mux Signing Key**
+
+Log into your [Mux Dashboard](https://dashboard.mux.com):
+
+1. **Get Signing Key ID & Private Key** (required for SIGNED playback):
+   - Go to **Settings** > **Signing Keys**
+   - Click **Create new signing key**
+   - Copy the **Key ID** and **Private Key** (save the private key - you can't retrieve it later!)
+
+2. **Optional: Get Token ID & Secret** (for future Atria-side analytics features):
+   - Go to **Settings** > **Access Tokens**
+   - Click **Generate new token**
+   - Select **Mux Video** permissions
+   - Copy the **Token ID** and **Token Secret** (save the secret - you can't retrieve it later!)
+   - Note: These are not currently used but may enable additional analytics features in future releases
+
+**Step 2: Add Credentials to Atria**
+
+1. Go to your **Organization Settings** in Atria
+2. Scroll to **Mux Streaming Credentials** section
+3. Click to expand the section
+4. Enter the required signing key:
+   - **Mux Signing Key ID** (required)
+   - **Mux Signing Private Key** (required)
+5. Optionally enter token credentials:
+   - **Mux Token ID** (optional)
+   - **Mux Token Secret** (optional)
+6. Click **Save Credentials**
+
+### Security
+
+**Credential Encryption:**
+- All Mux credentials are encrypted using Fernet encryption before storage
+- Encryption uses the `ENCRYPTION_KEY` configured during installation
+- Credentials are only decrypted when generating playback tokens
+
+**Access Control:**
+- Only organization Owners and Admins can access the credentials section
+- **Credentials are NEVER viewable after entry** - they're immediately encrypted
+- To update credentials, you must enter new values (can't retrieve old ones)
+- Credentials are never exposed to regular members or attendees
+- Each organization has separate, isolated credentials
+
+### Managing Credentials
+
+**Updating Credentials:**
+- You can update any or all credential fields at any time
+- Changes take effect immediately for new playback token generation
+- Existing videos with active tokens continue to work until tokens expire
+
+**Deleting Credentials:**
+- Click **Delete Credentials** to remove all Mux credentials
+- This will prevent creating new sessions with Mux SIGNED playback
+- Existing sessions with SIGNED playback may stop working
+- To restore access, you must re-enter your Mux signing key
+
+**Testing Your Setup:**
+1. After saving credentials, create a test session
+2. Select Mux as the streaming platform
+3. Choose SIGNED playback policy
+4. Add a Mux playback ID
+5. View the session page - video should play with analytics tracking
+
+### Troubleshooting
+
+**"Invalid credentials" error:**
+- Double-check all four credential fields are filled in correctly
+- Verify credentials are active in your Mux dashboard
+- Ensure there are no extra spaces in the credential values
+- Try regenerating credentials in Mux and re-entering them
+
+**Videos not playing:**
+- Verify the playback ID is correct for your Mux asset
+- Check that the Mux asset exists and is ready (not still processing)
+- Ensure your Mux account is active and in good standing
+- Try using PUBLIC playback first to isolate the issue
+
+**Analytics not showing:**
+- Analytics appear in your Mux dashboard, not in Atria
+- Wait a few minutes for data to populate
+- Ensure someone actually watched the video
+- Verify your Mux account tier includes analytics
+
+### Learn More
+
+- [Mux Streaming Guide](../video-streaming/mux-streaming) - Complete Mux integration documentation
+- [Streaming Overview](../video-streaming/streaming-overview) - Compare all streaming platforms
+- [Mux Documentation](https://docs.mux.com/) - Official Mux docs
+
+---
+
 ## Cross-Organization Events
 
 Atria's multi-tenant architecture provides powerful collaboration features:
