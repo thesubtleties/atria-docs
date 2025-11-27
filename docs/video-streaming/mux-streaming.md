@@ -532,7 +532,7 @@ Mux only shows the Token Secret and Private Key once when created. Save them sec
 
 ## Related Topics
 
-- [Streaming Overview](./streaming-overview) - Compare all streaming platforms
+- [Video Platforms Overview](./platforms-overview) - Compare all platforms
 - [Organizations](../core-concepts/organizations#mux-streaming-credentials) - Set up Mux credentials
 - [Vimeo Streaming](./vimeo-streaming) - Alternative platform with auto VOD transition
 - [Creating Sessions](../sessions-speakers/creating-sessions) - Session management guide

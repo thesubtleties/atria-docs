@@ -203,16 +203,18 @@ This cannot be undone.
 
 ---
 
-## Video Streaming
+## Video Platforms
 
 Add video streaming to your sessions with support for multiple platforms:
 
 ### Supported Platforms
 - **Vimeo** - Pre-recorded videos and live streams
 - **Mux** - Professional streaming with analytics (PUBLIC and SIGNED playback)
-- **Zoom** - Live, interactive meetings
+- **Zoom** - Live meetings (opens externally)
+- **Jitsi (JaaS)** - Embedded video conferencing with per-user authentication
+- **Other** - Link to any external platform (MS Teams, Google Meet, etc.)
 
-You can use different platforms for different sessions based on your needs. For example, use Mux for your keynote, Zoom for workshops, and Vimeo for pre-recorded content.
+You can use different platforms for different sessions based on your needs. For example, use Mux for your keynote, Jitsi for workshops, Zoom for external meetings, and Vimeo for pre-recorded content.
 
 ### Adding Streaming to a Session
 
@@ -223,10 +225,14 @@ You can use different platforms for different sessions based on your needs. For 
    - **Vimeo** - For Vimeo videos
    - **Mux** - For Mux live streams or VOD
    - **Zoom** - For Zoom meetings
+   - **Jitsi** - For embedded video conferencing
+   - **Other** - For external platform links
 4. Enter platform-specific details:
    - **Vimeo:** Video URL or ID
    - **Mux:** Playback ID and policy (PUBLIC or SIGNED)
    - **Zoom:** Meeting URL/ID and optional passcode
+   - **Jitsi:** Room name (requires JaaS credentials)
+   - **Other:** HTTPS URL to external platform
 5. Save the session
 
 The video or join button appears on the session page for attendees.
@@ -236,14 +242,18 @@ The video or join button appears on the session page for attendees.
 - **Vimeo** - Simple, reliable video embedding. Best for pre-recorded content or Vimeo Live streams.
 - **Mux PUBLIC** - Professional video hosting without authentication. Great for publicly accessible content.
 - **Mux SIGNED** - Secure video with viewer analytics and time-limited access. Perfect for premium content.
-- **Zoom** - Live interaction with attendees. Essential for workshops and Q&A sessions.
+- **Jitsi** - Embedded video conferencing. Best for interactive sessions that stay within Atria.
+- **Zoom** - External video conferencing. Best when attendees prefer using Zoom app.
+- **Other** - Link to any external platform. Best for MS Teams, Google Meet, or custom solutions.
 
 :::tip Learn More About Streaming
 For detailed setup instructions, troubleshooting, and platform comparison:
-- [Video Streaming Overview](../video-streaming/streaming-overview) - Compare all platforms
+- [Video Platforms Overview](../video-streaming/platforms-overview) - Compare all platforms
 - [Vimeo Streaming](../video-streaming/vimeo-streaming) - Vimeo setup guide
 - [Mux Streaming](../video-streaming/mux-streaming) - Mux PUBLIC and SIGNED playback
+- [Jitsi Meetings (JaaS)](../video-streaming/jitsi-meetings) - Embedded conferencing
 - [Zoom Meetings](../video-streaming/zoom-meetings) - Zoom integration guide
+- [Other/External](../video-streaming/other-external) - External platform linking
 :::
 
 ---

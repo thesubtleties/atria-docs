@@ -184,13 +184,27 @@ To remove someone from your organization:
 
 ## Organization Settings
 
-### Updating Organization Details
+Organization settings are accessed through the **collapsible header panel** on your organization page.
 
-To update your organization information:
+### Accessing Settings
 
-1. Go to **Organization → Settings**
-2. Update the organization name
-3. Click **"Save Changes"**
+1. Go to your **Organization Dashboard**
+2. Look for the **dropdown chevron** (▼) in the header area next to your organization name
+3. Click the chevron to expand the settings panel
+4. You'll see cards for:
+   - **Organization Name** - Edit your organization's display name
+   - **Mux Video Signing** - Configure Mux streaming credentials
+   - **Jitsi Video Conferencing (JaaS)** - Configure Jitsi meeting credentials
+
+### Updating Organization Name
+
+To change your organization's name:
+
+1. Expand the settings panel (click the chevron in the header)
+2. Find the **Organization Name** card
+3. Click **"Edit Name"**
+4. Enter the new name
+5. Click **"Save Name"**
 
 :::info Future Settings
 Additional organization settings (logo, description, custom branding) are coming soon!
@@ -238,16 +252,14 @@ Log into your [Mux Dashboard](https://dashboard.mux.com):
 
 **Step 2: Add Credentials to Atria**
 
-1. Go to your **Organization Settings** in Atria
-2. Scroll to **Mux Streaming Credentials** section
-3. Click to expand the section
-4. Enter the required signing key:
+1. Go to your **Organization Dashboard**
+2. Click the **dropdown chevron** (▼) in the header to expand settings
+3. Find the **Mux Video Signing** card
+4. Click **"Add Credentials"** (or **"Update Credentials"** if already configured)
+5. Enter the required signing key:
    - **Mux Signing Key ID** (required)
    - **Mux Signing Private Key** (required)
-5. Optionally enter token credentials:
-   - **Mux Token ID** (optional)
-   - **Mux Token Secret** (optional)
-6. Click **Save Credentials**
+6. Click **"Save Credentials"**
 
 ### Security
 
@@ -306,8 +318,148 @@ Log into your [Mux Dashboard](https://dashboard.mux.com):
 ### Learn More
 
 - [Mux Streaming Guide](../video-streaming/mux-streaming) - Complete Mux integration documentation
-- [Streaming Overview](../video-streaming/streaming-overview) - Compare all streaming platforms
+- [Video Platforms Overview](../video-streaming/platforms-overview) - Compare all platforms
 - [Mux Documentation](https://docs.mux.com/) - Official Mux docs
+
+---
+
+## Jitsi (JaaS) Credentials
+
+If you plan to use [Jitsi embedded conferencing](../video-streaming/jitsi-meetings) for interactive video sessions, you'll need to configure your organization's JaaS (Jitsi as a Service) credentials.
+
+### What is Jitsi (JaaS)?
+
+Jitsi as a Service (JaaS) provides:
+- **Embedded video conferencing** - Meetings embedded directly in Atria (unlike Zoom)
+- **Per-user authentication** - Unique JWT tokens for each attendee
+- **Role-based moderator controls** - Admins/Organizers get recording and livestreaming capabilities
+- **Bring Your Own Account (BYOA)** - Use your own JaaS account and credentials
+
+:::note When Do You Need This?
+You only need JaaS credentials if you plan to use **Jitsi** for embedded conferencing. Vimeo, Mux, Zoom, and Other don't require JaaS credentials.
+:::
+
+### Setting Up JaaS Credentials
+
+**Prerequisites:**
+- A JaaS account at [jaas.8x8.vc](https://jaas.8x8.vc)
+- Organization Owner or Admin role in Atria
+
+**Step 1: Get Your JaaS Credentials**
+
+Log into your [JaaS Dashboard](https://jaas.8x8.vc):
+
+1. **Get your App ID:**
+   - Found on your JaaS dashboard
+   - Format: `vpaas-magic-cookie-xxxxxxxxxxxxx`
+   - This is your JaaS application identifier
+
+2. **Get your API Key ID:**
+   - Go to **API Keys** section
+   - Create a new API key or select existing
+   - Copy the **Key ID** (this is the "kid" for JWT tokens)
+
+3. **Get your Private Key:**
+   - When creating an API key, download the RSA private key
+   - This is a PEM-encoded file starting with `-----BEGIN RSA PRIVATE KEY-----`
+   - Save it securely - you can't retrieve it later!
+
+**Step 2: Add Credentials to Atria**
+
+1. Go to your **Organization Dashboard**
+2. Click the **dropdown chevron** (▼) in the header to expand settings
+3. Find the **Jitsi Video Conferencing (JaaS)** card
+4. Click **"Add Credentials"** (or **"Update Credentials"** if already configured)
+5. Enter your credentials:
+   - **JaaS App ID** (required) - Format: `vpaas-magic-cookie-xxxxx...`
+   - **JaaS API Key** (required) - Your API Key ID
+   - **JaaS Private Key (PEM format)** (required) - Paste the complete RSA private key
+6. Click **"Save Credentials"**
+
+### Security
+
+**Credential Encryption:**
+- All JaaS credentials are encrypted using Fernet encryption before storage
+- Encryption uses the `ENCRYPTION_KEY` configured during installation
+- Private key is only decrypted when generating JWT tokens
+
+**Access Control:**
+- Only organization Owners and Admins can access the credentials section
+- **Credentials are NEVER viewable after entry** - they're immediately encrypted
+- To update credentials, you must enter new values (can't retrieve old ones)
+- Credentials are never exposed to regular members or attendees
+- Each organization has separate, isolated credentials
+
+### Managing Credentials
+
+**Updating Credentials:**
+- You can update any or all credential fields at any time
+- Changes take effect immediately for new token generation
+- Existing active sessions will continue working until tokens expire
+
+**Deleting Credentials:**
+- Click **Delete Credentials** to remove all JaaS credentials
+- This will prevent creating new sessions with Jitsi
+- Existing Jitsi sessions may stop working
+- To restore access, you must re-enter your JaaS credentials
+
+**Testing Your Setup:**
+1. After saving credentials, create a test session
+2. Select Jitsi as the streaming platform
+3. Enter a room name
+4. View the session page - Jitsi meeting should embed
+5. Verify moderators get appropriate controls
+
+### Moderator Permissions
+
+JaaS tokens include feature permissions based on Atria event roles:
+
+**Moderators (Admin/Organizer):**
+- Recording (costs via JaaS billing)
+- Livestreaming to external platforms
+- File upload in Jitsi chat
+- Full participant management
+
+**Participants (Attendees, Speakers):**
+- Standard video/audio participation
+- View participant list
+- No recording or livestreaming access
+
+### Troubleshooting
+
+**"Invalid token" error:**
+- Double-check all credential fields are filled in correctly
+- Verify private key includes full PEM content (including headers)
+- Ensure API key is active in your JaaS dashboard
+- Try regenerating credentials in JaaS and re-entering them
+
+**Meeting not loading:**
+- Verify organization has JaaS credentials configured
+- Check room name is entered (minimum 3 characters)
+- Ensure "Jitsi" is selected as streaming platform
+- Check browser console for CSP or loading errors
+
+**No moderator controls:**
+- Verify you have Admin or Organizer role in the event
+- Refresh page to get new token with current permissions
+- Moderator status is determined when token is generated
+
+### JaaS Costs
+
+JaaS has usage-based pricing. Key costs:
+- **Video conferencing** - Free tier available
+- **Recording** - Approximately $0.01/minute
+- **Livestreaming** - Standard streaming costs
+
+Only moderators can initiate recordings, protecting against unexpected costs.
+
+**View pricing:** [jaas.8x8.vc](https://jaas.8x8.vc/#pricing)
+
+### Learn More
+
+- [Jitsi Meetings (JaaS) Guide](../video-streaming/jitsi-meetings) - Complete Jitsi integration documentation
+- [Video Platforms Overview](../video-streaming/platforms-overview) - Compare all platforms
+- [JaaS Documentation](https://developer.8x8.com/jaas/) - Official JaaS docs
 
 ---
 

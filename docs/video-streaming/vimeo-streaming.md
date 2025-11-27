@@ -326,7 +326,7 @@ Vimeo offers various plans with different storage limits, live streaming capabil
 
 ## Related Topics
 
-- [Streaming Overview](./streaming-overview) - Compare all streaming platforms
+- [Video Platforms Overview](./platforms-overview) - Compare all platforms
 - [Mux Streaming](./mux-streaming) - Alternative with built-in analytics
 - [Creating Sessions](../sessions-speakers/creating-sessions) - Session management guide
 

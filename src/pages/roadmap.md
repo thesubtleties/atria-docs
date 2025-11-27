@@ -2,19 +2,29 @@
 
 Our vision for the future of open-source event management. This roadmap outlines planned features and improvements to the Atria platform.
 
-## Next Up
+## Recently Shipped
 
-### Streaming & Video Integration
-**In Active Development**
+### Multi-Platform Video Integration
+**Released in v0.2.0 and v0.3.0**
 
-Integrated video streaming with flexible per-session provider options:
+Flexible video and conferencing with per-session provider options:
 
-- **Zoom Integration** - In-browser embedded Zoom meetings
-- **Mux Integration** - Flexible video streaming with Mux
-- Configure different providers for each session (e.g., Zoom for workshops, Mux for keynotes)
-- In-app video controls and management
+- **Vimeo** - Pre-recorded and live video streaming
+- **Mux** - Professional streaming with PUBLIC and SIGNED playback modes
+- **Zoom** - External meeting links with passcode support
+- **Jitsi (JaaS)** - Embedded video conferencing with role-based moderator controls
+- **Other/External** - Link to any platform (MS Teams, Google Meet, etc.)
+- Mix and match providers across sessions based on your needs
 
 ## Coming Soon
+
+### Location Management
+Physical and virtual room management for hybrid and in-person events:
+
+- **Room definitions** - Create named locations (Conference Room A, Main Stage, etc.)
+- **Session-room assignments** - Tie sessions to physical locations
+- **Capacity tracking** - Set and display room capacities
+- **Hybrid support** - Combine physical locations with virtual streaming options
 
 ### Advanced Reporting & Analytics
 Real-time insights into event performance, attendee engagement, and networking activity.

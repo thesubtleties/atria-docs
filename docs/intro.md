@@ -60,7 +60,7 @@ Corporations, nonprofits, education, faith organizations, influencers, communiti
 
 **Current State:** Live at [atria.gg](https://atria.gg) with active development
 
-- 196 passing tests (~47% backend coverage, target: 80%+)
+- 401 passing tests (backend coverage growing, target: 80%+)
 - Automated CI/CD with GitHub Actions
 - Multi-instance scaling ready (Socket.IO clustering with Redis)
 - Actively maintained with regular updates
