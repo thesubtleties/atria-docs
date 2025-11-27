@@ -31,11 +31,13 @@ This documentation site provides comprehensive guides for:
 - **Creating Sessions** - Session scheduling, types, status management, and chat modes
 - **Managing Speakers** - Adding speakers, roles, assignments, and speaker profiles
 
-### Video Streaming
-- **Streaming Overview** - Multi-platform comparison (Vimeo, Mux, Zoom) and decision guide
+### Video Platforms
+- **Video Platforms Overview** - Multi-platform comparison (Vimeo, Mux, Zoom, Jitsi, Other) and decision guide
 - **Vimeo Streaming** - Setup, live streaming, VOD, and troubleshooting
 - **Mux Streaming** - PUBLIC and SIGNED playback, BYOA model, live streams and VOD
 - **Zoom Meetings** - Interactive meeting integration and security settings
+- **Jitsi Meetings (JaaS)** - Embedded conferencing, per-user JWT authentication, moderator controls
+- **Other/External Links** - Link to any external platform (MS Teams, Google Meet, etc.)
 
 ### Networking Features (For Attendees)
 - **Making Connections** - Attendee discovery, connection requests, and icebreakers
@@ -58,7 +60,7 @@ This documentation site provides comprehensive guides for:
 
 ## Documentation Stats
 
-- **25 comprehensive user guides** covering organizer and attendee workflows
+- **27 comprehensive user guides** covering organizer and attendee workflows
 - All guides include real-world scenarios, troubleshooting, and best practices
 - Platform comparison tables and decision guides for streaming options
 - Mobile vs desktop differences documented where applicable
@@ -146,7 +148,7 @@ atria-docs/
 │   ├── event-management/     # Event creation, customization, publishing, chat rooms, icebreakers
 │   ├── attendee-management/  # Invitations, roles, moderation
 │   ├── sessions-speakers/    # Session and speaker management
-│   ├── video-streaming/      # Multi-platform streaming (Vimeo, Mux, Zoom)
+│   ├── video-streaming/      # Multi-platform streaming (Vimeo, Mux, Zoom, Jitsi, Other)
 │   ├── networking-features/  # Connections and privacy (attendee guides)
 │   ├── chat-messaging/       # Chat rooms and DMs (attendee guides)
 │   ├── sponsors/             # Sponsor management

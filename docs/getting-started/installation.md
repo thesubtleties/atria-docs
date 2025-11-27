@@ -6,6 +6,10 @@ sidebar_position: 1
 
 Get Atria up and running on your local machine in minutes. This guide covers the quickest path to a working development environment.
 
+:::tip Using atria.gg?
+This installation guide is for **developers and self-hosters** who want to run their own Atria instance. If you're using the managed platform at [atria.gg](https://atria.gg), you can skip this page and head straight to the [Core Concepts](/docs/core-concepts/organizations) or [Event Management](/docs/event-management/creating-events) guides to learn how to use Atria.
+:::
+
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
@@ -463,11 +467,12 @@ You will need to configure:
    - Configure all required services (Redis, MinIO, SMTP, etc.)
    - Set appropriate security headers and CORS settings
    - **Content Security Policy (CSP)**: Configure in `frontend/csp-header.conf`
-     - Pre-configured for Vimeo, Mux, and Zoom streaming
+     - Pre-configured for Vimeo, Mux, Zoom, and Jitsi streaming
      - **Update production-specific domains:**
        - `storage.sbtl.dev` → Your MinIO/S3 endpoint
        - `avatars.atria.gg` → Your avatar service domain
        - `wss://atria.gg` → Your WebSocket domain
+     - Jitsi domains (`*.8x8.vc`, `*.jitsi.net`) are pre-configured
 
 4. **Infrastructure Considerations**
    - Container orchestration (Docker Swarm, Kubernetes, etc.)
@@ -491,7 +496,7 @@ You will need to configure:
     - [ ] Update storage domain (replace `storage.sbtl.dev` with your MinIO/S3 URL)
     - [ ] Update avatar domain (replace `avatars.atria.gg` if using custom avatar service)
     - [ ] Update WebSocket domain (replace `wss://atria.gg` with your domain)
-    - [ ] Verify streaming platform rules (Vimeo, Mux, Zoom) remain intact
+    - [ ] Verify streaming platform rules (Vimeo, Mux, Zoom, Jitsi) remain intact
 - [ ] Set up CI/CD pipeline (optional)
 
 :::warning Production Customization Required

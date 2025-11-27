@@ -427,7 +427,7 @@ Automatic Zoom cloud recording integration is being considered for future releas
 
 ## Related Topics
 
-- [Streaming Overview](./streaming-overview) - Compare all streaming platforms
+- [Video Platforms Overview](./platforms-overview) - Compare all platforms
 - [Vimeo Streaming](./vimeo-streaming) - Embedded video alternative
 - [Mux Streaming](./mux-streaming) - Embedded video with analytics
 - [Creating Sessions](../sessions-speakers/creating-sessions) - Session management guide
@@ -435,5 +435,5 @@ Automatic Zoom cloud recording integration is being considered for future releas
 ---
 
 :::tip Live Interaction
-Zoom is the only platform in Atria that provides true two-way interaction. If your session requires audience participation, Zoom is your best choice.
+Zoom and Jitsi are the two platforms that provide two-way interaction. Zoom opens externally, while Jitsi embeds directly in Atria. Choose based on whether you want attendees to stay in-platform (Jitsi) or prefer external Zoom (this guide).
 :::
