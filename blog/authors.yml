@@ -6,3 +6,12 @@ steven:
   socials:
     github: thesubtleties
     linkedin: stevenglab
+
+aaliyah:
+  name: Aaliyah
+  title: Full-Stack Engineer
+  url: https://aileks.dev
+  image_url: https://github.com/aileks.png
+  socials:
+    github: aileks
+    linkedin: aaliyah-harper
