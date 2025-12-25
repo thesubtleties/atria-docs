@@ -4,6 +4,11 @@ Our vision for the future of open-source event management. This roadmap outlines
 
 ## Recently Shipped
 
+### Full TypeScript Migration
+**Released in v0.4.0**
+
+Complete frontend rewrite in TypeScript for improved reliability and developer experience - 768 files migrated with strict type checking enabled.
+
 ### Multi-Platform Video Integration
 **Released in v0.2.0 and v0.3.0**
 
@@ -17,6 +22,17 @@ Flexible video and conferencing with per-session provider options:
 - Mix and match providers across sessions based on your needs
 
 ## Coming Soon
+
+### Communities
+Persistent hubs for ongoing engagement between events:
+
+- **Your own space** - Replace Discord, Twitch, and other platforms with a community you fully own
+- **For everyone** - Whether you're a streamer, a local political group, a hobby club, or a professional network, Communities give you a real space to connect without requiring everyone to learn Discord or Twitch
+- **Creator-friendly** - Handle-based privacy protects real identities, optional for professional communities
+- **Link-in-bio pages** - Shareable landing pages for your community with free and paid membership options
+- **Streaming anytime** - Go live outside of formal events, engage your audience whenever you want
+- **Own your revenue** - Bring your own accounts for streaming (Mux, Vimeo, etc.) so platform fees go directly to you, not a middleman. Self-host your data or use atria.gg - either way, you keep more of what you earn
+- **Event integration** - Track check-ins at in-person events, help members connect afterward, and keep your community engaged between gatherings
 
 ### Location Management
 Physical and virtual room management for hybrid and in-person events:
