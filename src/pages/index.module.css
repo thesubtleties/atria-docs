@@ -65,6 +65,25 @@
   margin-right: auto;
 }
 
+.hiring {
+  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 2rem 0 0 0;
+  letter-spacing: 0.01em;
+}
+
+.hiring a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+.hiring a:hover {
+  color: white;
+}
+
 /* CTA Buttons */
 .buttons {
   display: flex;
@@ -206,6 +225,11 @@
     padding: 0.875rem 2rem !important;
   }
 
+  .hiring {
+    font-size: 0.85rem;
+    margin-top: 1.5rem;
+  }
+
   .features {
     padding: 3rem 1rem;
   }
@@ -242,6 +266,18 @@
 
 [data-theme='dark'] .subtitle {
   color: rgba(255, 255, 255, 0.85);
+}
+
+[data-theme='dark'] .hiring {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+[data-theme='dark'] .hiring a {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme='dark'] .hiring a:hover {
+  color: white;
 }
 
 [data-theme='dark'] .ctaButton {
