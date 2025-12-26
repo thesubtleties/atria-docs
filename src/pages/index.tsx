@@ -41,6 +41,12 @@ function HomepageHeader() {
             View on GitHub
           </Link>
         </div>
+
+        <p className={styles.hiring}>
+          Got big ideas for events and communities?
+          <br />
+          <Link to="mailto:steven@sbtl.dev">Join our team</Link>
+        </p>
       </div>
     </header>
   );
