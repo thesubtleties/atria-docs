@@ -43,7 +43,7 @@ Corporations, nonprofits, education, faith organizations, influencers, communiti
 - S3-compatible storage (MinIO, AWS S3, or similar)
 
 **Frontend:**
-- React 18 with Vite 6 build system
+- React 18 with TypeScript and Vite 6 build system
 - Mantine UI 7 component library
 - Redux Toolkit + RTK Query for state management
 - Socket.IO Client for real-time updates

@@ -103,10 +103,42 @@ When creating a session, select the appropriate day number. The system automatic
 
 ---
 
-## Session Status
+## Session Visibility Windows
 
-:::info Upcoming Feature
-Session status management (Scheduled, Live, Completed, Cancelled) is coming soon. Currently, all sessions are treated the same regardless of timing. Future updates will allow you to mark sessions as live or completed and control visibility based on status.
+Control when session content (video and chat) becomes accessible to attendees. This helps keep attendees focused on what's happening now rather than wandering into sessions that haven't started yet.
+
+### Setting Event-Wide Defaults
+
+Set a default visibility window for all sessions in your event:
+
+1. Go to **Event Admin** > **Event Settings**
+2. Find the **Session Visibility Window** dropdown
+3. Choose your default:
+   - **Always visible** - Content available anytime (default)
+   - **2/5/10/15 minutes before/after** - Content only accessible within that window around the session time
+
+### Per-Session Overrides
+
+Override the event default for specific sessions:
+
+1. Edit the session
+2. Find the **Visibility Override** field
+3. Choose:
+   - **Use event default** - Inherits the event-wide setting
+   - **Always visible** - This session is always accessible
+   - **X minutes before/after** - Custom window for this session
+
+### How Visibility Windows Work
+
+When a visibility window is active:
+- **Before the window opens**: Attendees see a message that the session isn't available yet
+- **During the window**: Full access to video and chat
+- **After the window closes**: Content becomes inaccessible (unless VOD is enabled)
+
+:::tip Use Cases
+- **Conferences**: Keep attendees in the current session, not browsing ahead
+- **Live events**: Build anticipation by revealing content at showtime
+- **Workshops**: Ensure everyone starts together
 :::
 
 ---
@@ -205,37 +237,64 @@ This cannot be undone.
 
 ## Video Platforms
 
-Add video streaming to your sessions with support for multiple platforms:
+Add video streaming to your sessions with support for multiple platforms and flexible stream modes.
+
+### Stream Modes
+
+Each session has a stream mode that determines how video is handled:
+
+| Mode | Description | Use Case |
+|------|-------------|----------|
+| **None** | No video for this session | Networking breaks, in-person only sessions |
+| **Live** | Live video during the session | Real-time presentations, workshops, Q&A |
+| **Pre-recorded (VOD)** | Pre-recorded video content | Asynchronous content, speaker couldn't attend live |
+
+### Video Visibility Controls
+
+Fine-tune when and what attendees see:
+
+- **Show Video** - Master toggle to show/hide video on the session page
+- **Show Recording** - After the session ends, display a recording (can be on a different platform than the live stream)
+
+:::tip Recording on a Different Platform
+Use Zoom for your live session but want to host the recording on Vimeo or Mux? Set your live platform to Zoom, then add a VOD URL from your preferred hosting platform. Attendees see the live Zoom meeting during the session, then the hosted recording afterward.
+:::
 
 ### Supported Platforms
+
 - **Vimeo** - Pre-recorded videos and live streams
 - **Mux** - Professional streaming with analytics (PUBLIC and SIGNED playback)
 - **Zoom** - Live meetings (opens externally)
 - **Jitsi (JaaS)** - Embedded video conferencing with per-user authentication
 - **Other** - Link to any external platform (MS Teams, Google Meet, etc.)
 
-You can use different platforms for different sessions based on your needs. For example, use Mux for your keynote, Jitsi for workshops, Zoom for external meetings, and Vimeo for pre-recorded content.
+:::note Platform Availability
+The platform dropdown only shows options your organization can use:
+- **Mux** and **Mux SIGNED** require Mux credentials in Organization Settings
+- **Jitsi** requires JaaS credentials in Organization Settings
+- **Vimeo**, **Zoom**, and **Other** are always available
+
+If you're missing options, check your Organization Settings to configure credentials.
+:::
 
 ### Adding Streaming to a Session
 
 1. Edit your session (or create a new one)
-2. Find the **Streaming Platform** dropdown
-3. Select your platform:
-   - **None** - No video streaming
-   - **Vimeo** - For Vimeo videos
-   - **Mux** - For Mux live streams or VOD
-   - **Zoom** - For Zoom meetings
-   - **Jitsi** - For embedded video conferencing
-   - **Other** - For external platform links
+2. Select your **Stream Mode** (None, Live, or Pre-recorded)
+3. Choose your **Streaming Platform**
 4. Enter platform-specific details:
    - **Vimeo:** Video URL or ID
    - **Mux:** Playback ID and policy (PUBLIC or SIGNED)
    - **Zoom:** Meeting URL/ID and optional passcode
    - **Jitsi:** Room name (requires JaaS credentials)
    - **Other:** HTTPS URL to external platform
-5. Save the session
+5. Configure visibility:
+   - **Show Video** - Toggle video visibility
+   - **Show Recording** - Enable to show recording after session ends
+   - **VOD URL** (optional) - Add a recording URL if different from live stream
+6. Save the session
 
-The video or join button appears on the session page for attendees.
+The video or join button appears on the session page for attendees based on your visibility settings.
 
 ### Which Platform Should I Use?
 
