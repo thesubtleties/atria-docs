@@ -4,6 +4,16 @@ Our vision for the future of open-source event management. This roadmap outlines
 
 ## Recently Shipped
 
+### Session Visibility & Stream Modes
+**Released in v0.5.0**
+
+More control over when and how session content appears to attendees:
+
+- **Visibility Windows** - Configure when sessions become accessible (always, or X minutes before/after)
+- **Stream Modes** - None, Live, or Pre-recorded (VOD) with show/hide controls
+- **Recording Support** - Show recordings after sessions end, even on different platforms than live
+- **Smart Platform Filtering** - Platform options filtered based on your organization's credentials
+
 ### Full TypeScript Migration
 **Released in v0.4.0**
 
